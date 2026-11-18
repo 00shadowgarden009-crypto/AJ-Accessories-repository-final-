@@ -1,5 +1,9 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from 'react';
 
 export default function AccountPage() {
-  return <main className="simple-state"><p className="eyebrow">AJ / CUSTOMER ACCOUNT</p><h1>Everything, <em>in one place.</em></h1><p>Registration, login and order history require secure authentication to be enabled.</p><Link className="button button-primary" href="/shop">Return to shop <span>↗</span></Link></main>;
+  const [loading, setLoading] = useState(true);
+  useEffect(() => { setLoading(false); }, []);
+  return <main className="simple-state"><p className="eyebrow">YOUR AJ / ACCOUNT</p><h1>Manage your <em>account.</em></h1>{loading ? <p>Loading session…</p> : <div className="account-empty"><p>Sign-in and account history require Supabase Auth configuration.</p><button className="button button-primary" type="button" disabled>Sign in unavailable</button></div>}</main>;
 }
